@@ -1,3 +1,11 @@
+/*
+ *      |                    \                 |                       
+ *      |      _ \   _` |   _ \     \    _` |  |  |  | (_-<   -_)   _| 
+ *     ____| \___/ \__, | _/  _\ _| _| \__,_| _| \_, | ___/ \___| _|   
+ *                 ____/                         ___/                  
+ *
+ * author: Klaus Sievers
+ */
 package de.siewarez.loganalyser.search.cases;
 
 public class IntegerCase extends NumberCase<Integer> {
@@ -13,5 +21,10 @@ public class IntegerCase extends NumberCase<Integer> {
     } catch (NumberFormatException ex) {
       return -1;
     }
+  }
+
+  @Override
+  public Class<Integer> getType() {
+    return Integer.class;
   }
 }

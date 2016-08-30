@@ -11,6 +11,7 @@ package de.siewarez.loganalyser.gui.timeline;
 import java.awt.Component;
 import java.util.Date;
 import java.util.List;
+import de.siewarez.loganalyser.search.AbstractCase;
 import de.siewarez.loganalyser.search.Case;
 import de.siewarez.loganalyser.search.Result;
 
@@ -35,7 +36,7 @@ public class Timeline<E> extends Component {
     return aktCase;
   }
 
-  public void setAktCase(Case<E> aktCase) {
+  public void setAktCase(AbstractCase<E> aktCase) {
     this.aktCase = aktCase;
   }
 
@@ -71,6 +72,7 @@ public class Timeline<E> extends Component {
     this.widthMilliSecond = widthMilliSecond;
   }
 
+  @Override
   public int getY() {
     return y;
   }

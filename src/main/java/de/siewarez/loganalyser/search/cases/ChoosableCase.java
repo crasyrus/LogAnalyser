@@ -1,27 +1,27 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *      |                    \                 |                       
+ *      |      _ \   _` |   _ \     \    _` |  |  |  | (_-<   -_)   _| 
+ *     ____| \___/ \__, | _/  _\ _| _| \__,_| _| \_, | ___/ \___| _|   
+ *                 ____/                         ___/                  
+ *
+ * author: Klaus Sievers
  */
 package de.siewarez.loganalyser.search.cases;
 
-import de.siewarez.loganalyser.search.Case;
+import de.siewarez.loganalyser.search.AbstractCase;
 
-/**
- *
- * @author Klaus
- */
 public enum ChoosableCase {
     BOOLEAN_CHOOSE_CASE("Boolean", DefaultBooleanCase.class),
     INTEGER_CHOOSE_CASE("Integer", IntegerCase.class),
     DOUBLE_CHOOSE_CASE("Double", DoubleCase.class),
     STRING_CHOOSE_CASE("Sting", StringCase.class);
 
-    private ChoosableCase(String name, Class<? extends Case<?>> c) {
+    private ChoosableCase(String name, Class<? extends AbstractCase<?>> c) {
         this.name = name;
         this.c = c;
     }
 
-    public Class<? extends Case<?>> getC() {
+    public Class<? extends AbstractCase<?>> getC() {
         return c;
     }
 
@@ -34,11 +34,6 @@ public enum ChoosableCase {
         return name;
     }
     
-    
-    
-    
     private String name;
-    private Class<? extends Case<?>> c;
-    
-    
+    private Class<? extends AbstractCase<?>> c;
 }

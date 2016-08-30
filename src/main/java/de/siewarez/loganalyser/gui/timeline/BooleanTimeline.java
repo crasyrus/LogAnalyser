@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.Date;
 import java.util.List;
+import de.siewarez.loganalyser.search.AbstractCase;
 import de.siewarez.loganalyser.search.Case;
 import de.siewarez.loganalyser.search.Result;
 
@@ -31,8 +32,12 @@ public class BooleanTimeline extends Timeline<Boolean> {
     if (getY() != -1 && getWidthMilliSecond() != -1) {
       Graphics2D g2 = (Graphics2D) g;
       g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-      //g2.setColor(getAktCase().getColor());
-
+      if(getAktCase() instanceof CaseColorWrapper)
+      {
+        CaseColorWrapper caseColorWrapper = (CaseColorWrapper) getAktCase();
+        g2.setColor(caseColorWrapper.getColor());
+      }
+      
       for (Result<Boolean> r : getResult()) {
         x2 = (int) ((r.getDatum().getTime() - getStart().getTime()) * getWidthMilliSecond());
         y2 = getY() - Timeline.Y_HEIGTH;

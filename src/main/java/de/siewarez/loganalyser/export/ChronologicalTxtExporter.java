@@ -11,7 +11,6 @@ package de.siewarez.loganalyser.export;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,13 +33,9 @@ public class ChronologicalTxtExporter extends TxtExporter {
 
   @Override
   public void export(ResultContainer container) {
-    FileWriter writer = null;
     File file = new File(getPath());
-    List<Result<?>> all = new ArrayList<>();
-    try {
-      writer = new FileWriter(file, isAppend());
-
-      all = container.toChronoligicalList();
+    try (FileWriter writer = new FileWriter(file, isAppend())) {
+      List<Result<?>> all = container.toChronoligicalList();
 
       for (Result<?> r : all) {
         writer.write(getModus() == PrintModus.VALUE ? r.toString() : r.getLine());
@@ -48,12 +43,6 @@ public class ChronologicalTxtExporter extends TxtExporter {
       }
     } catch (IOException ex) {
       Logger.getLogger(CaseSeperatetTxtExporter.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-      try {
-        writer.close();
-      } catch (IOException ex) {
-        Logger.getLogger(CaseSeperatetTxtExporter.class.getName()).log(Level.SEVERE, null, ex);
-      }
     }
   }
 

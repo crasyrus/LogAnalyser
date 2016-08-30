@@ -1,12 +1,20 @@
+/*
+ *      |                    \                 |                       
+ *      |      _ \   _` |   _ \     \    _` |  |  |  | (_-<   -_)   _| 
+ *     ____| \___/ \__, | _/  _\ _| _| \__,_| _| \_, | ___/ \___| _|   
+ *                 ____/                         ___/                  
+ *
+ * author: Klaus Sievers
+ */
 package de.siewarez.loganalyser.search.cases;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import de.siewarez.loganalyser.search.Case;
+import de.siewarez.loganalyser.search.AbstractCase;
 
-public class StringConstructionCase<E> extends Case<E> {
+public class StringConstructionCase<E> extends AbstractCase<E> {
 
   private final Class<E> type;
 
@@ -27,4 +35,8 @@ public class StringConstructionCase<E> extends Case<E> {
     return null;
   }
 
+  @Override
+  public Class<E> getType() {
+    return type;
+  }
 }

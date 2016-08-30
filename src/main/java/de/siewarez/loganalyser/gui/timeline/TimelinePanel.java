@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
+import de.siewarez.loganalyser.search.AbstractCase;
 import de.siewarez.loganalyser.search.Case;
 import de.siewarez.loganalyser.search.Result;
 import de.siewarez.loganalyser.search.ResultContainer;
@@ -86,13 +87,7 @@ public class TimelinePanel extends JPanel {
   @SuppressWarnings("unchecked")
   private void createLines() {
     for (Case<?> c : resultContainer.getResults().keySet()) {
-      if (c instanceof BooleanCase) {
-        List<Result<Boolean>> l = new LinkedList<>();
-        for (Result<?> r : resultContainer.getResults().get(c)) {
-          l.add((Result<Boolean>) r);
-        }
-        lines.add(new BooleanTimeline((Case<Boolean>) c, l, start, end));
-      }
+      handleCases(c);
 //            else if(c instanceof NumberCase){
 //                 List<Result<Number>> l = new LinkedList<Result<Number>>();
 //                for(Result<?> r : result.get(c)){
@@ -100,7 +95,16 @@ public class TimelinePanel extends JPanel {
 //                }
 //                lines.add(new NumberTimeline((Case<Number>)c, l, getWidthSecond(), LINE_PADDING*i));
 //            }
+    }
+  }
 
+  private void handleCases(Case<?> c) {
+    if (c.getType().isAssignableFrom(Boolean.class)) {
+      List<Result<Boolean>> l = new LinkedList<>();
+      for (Result<?> r : resultContainer.getResults().get(c)) {
+        l.add((Result<Boolean>) r);
+      }
+      lines.add(new BooleanTimeline((Case<Boolean>) c, l, start, end));
     }
   }
 
